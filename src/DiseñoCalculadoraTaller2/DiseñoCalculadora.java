@@ -22,8 +22,6 @@ public class DiseñoCalculadora {
     etiqueta2.setText("INGRESE EL NOMBRE: ");
     etiqueta2.setBounds(600, 100, 150, 30);
     ventana.add(etiqueta2);
-   
-    
     //revisar bien las dimensiones, buscar como se puede mirar de mejoror manera.
     
     
