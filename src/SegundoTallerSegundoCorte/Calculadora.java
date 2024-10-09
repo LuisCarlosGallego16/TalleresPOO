@@ -4,6 +4,8 @@
  */
 package SegundoTallerSegundoCorte;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author luisc
@@ -58,41 +60,101 @@ public class Calculadora extends javax.swing.JFrame {
 
         botonNumero1.setText("1");
         botonNumero1.setFocusable(false);
+        botonNumero1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonNumero1MouseClicked(evt);
+            }
+        });
 
         botonNumero2.setText("2");
         botonNumero2.setFocusable(false);
+        botonNumero2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonNumero2MouseClicked(evt);
+            }
+        });
 
         botonNumero4.setText("4");
         botonNumero4.setFocusable(false);
+        botonNumero4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonNumero4MouseClicked(evt);
+            }
+        });
 
         botonNumero7.setText("7");
         botonNumero7.setFocusable(false);
+        botonNumero7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonNumero7MouseClicked(evt);
+            }
+        });
 
         botonNumero5.setText("5");
         botonNumero5.setFocusable(false);
+        botonNumero5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonNumero5MouseClicked(evt);
+            }
+        });
 
         botonNumero8.setText("8");
         botonNumero8.setFocusable(false);
+        botonNumero8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonNumero8MouseClicked(evt);
+            }
+        });
 
         botonNumero3.setText("3");
         botonNumero3.setFocusable(false);
+        botonNumero3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonNumero3MouseClicked(evt);
+            }
+        });
 
         botonNumero6.setText("6");
         botonNumero6.setFocusable(false);
+        botonNumero6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonNumero6MouseClicked(evt);
+            }
+        });
 
         botonNumero9.setText("9");
         botonNumero9.setFocusable(false);
+        botonNumero9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonNumero9MouseClicked(evt);
+            }
+        });
 
         botonNumero0.setText("0");
         botonNumero0.setFocusable(false);
+        botonNumero0.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonNumero0MouseClicked(evt);
+            }
+        });
 
         etiquetaTitulo2.setText("OPERACIONES");
 
         botonSumar.setText("+");
         botonSumar.setFocusable(false);
+        botonSumar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonSumarMouseClicked(evt);
+            }
+        });
 
         botonRestar.setText("-");
         botonRestar.setFocusable(false);
+        botonRestar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonRestarMouseClicked(evt);
+            }
+        });
         botonRestar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonRestarActionPerformed(evt);
@@ -101,9 +163,19 @@ public class Calculadora extends javax.swing.JFrame {
 
         botonMultiplicar.setText("*");
         botonMultiplicar.setFocusable(false);
+        botonMultiplicar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonMultiplicarMouseClicked(evt);
+            }
+        });
 
         botonDividir.setText("/");
         botonDividir.setFocusable(false);
+        botonDividir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonDividirMouseClicked(evt);
+            }
+        });
 
         jLabel2.setText("RESULTADO:");
 
@@ -123,24 +195,20 @@ public class Calculadora extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(318, 318, 318)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(etiquetaTitutlo1)
-                        .addGap(337, 337, 337))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(etiquetaTitulo2)
-                        .addGap(16, 16, 16))))
+                        .addGap(16, 16, 16))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(campoResultado, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                        .addGap(337, 337, 337))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(campoNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etiquetaNumero1))
+                .addGap(164, 164, 164)
+                .addComponent(etiquetaNumero1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(etiquetaNumero2)
-                    .addComponent(campoNumero2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(205, 205, 205))
+                .addComponent(etiquetaNumero2)
+                .addGap(207, 207, 207))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -176,22 +244,28 @@ public class Calculadora extends javax.swing.JFrame {
                                                 .addComponent(botonNumero6, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(botonNumero3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(campoResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(etiquetaTitutlo1)
                                 .addGap(187, 187, 187)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(botonMultiplicar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(botonRestar, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
                                 .addComponent(botonSumar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addGap(30, 30, 30))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addComponent(campoNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(campoNumero2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(174, 174, 174))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(12, 12, 12)
                 .addComponent(etiquetaTitutlo1)
-                .addGap(4, 4, 4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiquetaNumero1)
                     .addComponent(etiquetaNumero2))
@@ -233,9 +307,9 @@ public class Calculadora extends javax.swing.JFrame {
                 .addComponent(botonNumero0, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campoResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
@@ -244,6 +318,128 @@ public class Calculadora extends javax.swing.JFrame {
     private void botonRestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRestarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonRestarActionPerformed
+
+    private void botonNumero1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero1MouseClicked
+        if (campoNumero1.getText().equals("")) {
+            campoNumero1.setText("1");
+        } else if (campoNumero2.getText().equals("")) {
+            campoNumero2.setText("1");
+        }
+    }//GEN-LAST:event_botonNumero1MouseClicked
+
+    private void botonNumero2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero2MouseClicked
+        if (campoNumero1.getText().equals("")) {
+            campoNumero1.setText("2");
+        } else if (campoNumero2.getText().equals("")) {
+            campoNumero2.setText("2");
+        }    }//GEN-LAST:event_botonNumero2MouseClicked
+
+    private void botonNumero3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero3MouseClicked
+        if (campoNumero1.getText().equals("")) {
+            campoNumero1.setText("3");
+        } else if (campoNumero2.getText().equals("")) {
+            campoNumero2.setText("3");
+        }
+    }//GEN-LAST:event_botonNumero3MouseClicked
+
+    private void botonNumero4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero4MouseClicked
+        if (campoNumero1.getText().equals("")) {
+            campoNumero1.setText("4");
+        } else if (campoNumero2.getText().equals("")) {
+            campoNumero2.setText("4");
+        }
+    }//GEN-LAST:event_botonNumero4MouseClicked
+
+    private void botonNumero5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero5MouseClicked
+        if (campoNumero1.getText().equals("")) {
+            campoNumero1.setText("5");
+        } else if (campoNumero2.getText().equals("")) {
+            campoNumero2.setText("5");
+        }
+    }//GEN-LAST:event_botonNumero5MouseClicked
+
+    private void botonNumero6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero6MouseClicked
+        if (campoNumero1.getText().equals("")) {
+            campoNumero1.setText("6");
+        } else if (campoNumero2.getText().equals("")) {
+            campoNumero2.setText("6");
+        }
+    }//GEN-LAST:event_botonNumero6MouseClicked
+
+    private void botonNumero7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero7MouseClicked
+        if (campoNumero1.getText().equals("")) {
+            campoNumero1.setText("7");
+        } else if (campoNumero2.getText().equals("")) {
+            campoNumero2.setText("7");
+        }
+    }//GEN-LAST:event_botonNumero7MouseClicked
+
+    private void botonNumero8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero8MouseClicked
+        if (campoNumero1.getText().equals("")) {
+            campoNumero1.setText("8");
+        } else if (campoNumero2.getText().equals("")) {
+            campoNumero2.setText("8");
+        }
+    }//GEN-LAST:event_botonNumero8MouseClicked
+
+    private void botonNumero9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero9MouseClicked
+        if (campoNumero1.getText().equals("")) {
+            campoNumero1.setText("9");
+        } else if (campoNumero2.getText().equals("")) {
+            campoNumero2.setText("9");
+        }
+    }//GEN-LAST:event_botonNumero9MouseClicked
+
+    private void botonNumero0MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero0MouseClicked
+        if (campoNumero1.getText().equals("")) {
+            campoNumero1.setText("0");
+        } else if (campoNumero2.getText().equals("")) {
+            campoNumero2.setText("0");
+        }
+    }//GEN-LAST:event_botonNumero0MouseClicked
+
+    private void botonSumarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSumarMouseClicked
+        int numero1 = Integer.parseInt(campoNumero1.getText());
+        int numero2 = Integer.parseInt(campoNumero2.getText());
+        int resultado = numero1 + numero2;
+        campoResultado.setText(String.valueOf(resultado)); //El String.valueOF sirve para pasar de entero a string
+        campoNumero1.setText("");
+        campoNumero2.setText("");
+    }//GEN-LAST:event_botonSumarMouseClicked
+
+    private void botonRestarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRestarMouseClicked
+        int numero1 = Integer.parseInt(campoNumero1.getText());
+        int numero2 = Integer.parseInt(campoNumero2.getText());
+        int resultado = numero1 - numero2;
+        campoResultado.setText(String.valueOf(resultado)); //El String.valueOF sirve para pasar de entero a string
+        campoNumero1.setText("");
+        campoNumero2.setText("");
+    }//GEN-LAST:event_botonRestarMouseClicked
+
+    private void botonMultiplicarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonMultiplicarMouseClicked
+         int numero1 = Integer.parseInt(campoNumero1.getText());
+        int numero2 = Integer.parseInt(campoNumero2.getText());
+        int resultado = numero1 * numero2;
+        campoResultado.setText(String.valueOf(resultado)); //El String.valueOF sirve para pasar de entero a string
+        campoNumero1.setText("");
+        campoNumero2.setText("");       
+    }//GEN-LAST:event_botonMultiplicarMouseClicked
+
+    private void botonDividirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonDividirMouseClicked
+        int numero1 = Integer.parseInt(campoNumero1.getText());
+        int numero2 = Integer.parseInt(campoNumero2.getText());
+        if(numero2 != 0){
+                    int resultado = numero1 / numero2;
+        campoResultado.setText(String.valueOf(resultado)); //El String.valueOF sirve para pasar de entero a string
+        campoNumero1.setText("");
+        campoNumero2.setText("");
+        }else{
+            JOptionPane.showMessageDialog(null, "NO SE PUEDE REALIZAR DIVISON POR 0");
+            campoNumero1.setText("");
+            campoNumero2.setText("");
+        }
+
+    }//GEN-LAST:event_botonDividirMouseClicked
 
     /**
      * @param args the command line arguments
