@@ -5,6 +5,8 @@
 package PrimerTallerSegundoCorte;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 
@@ -19,6 +21,7 @@ public class Blog extends javax.swing.JFrame {
         botonesGrupo.add(radioButton2);
         botonesGrupo.add(radioButton3);
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -88,6 +91,11 @@ public class Blog extends javax.swing.JFrame {
         radioButton3.setText("OTRO");
 
         botonContinuar.setText("CONTINUAR");
+        botonContinuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonContinuarActionPerformed(evt);
+            }
+        });
 
         botonSalir.setText("SALIR");
         botonSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -276,6 +284,16 @@ public class Blog extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_botonSalirActionPerformed
+
+    private void botonContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonContinuarActionPerformed
+        botonContinuar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Blog2 blog2 = new Blog2();
+                blog2.setVisible(true);
+                dispose();
+            }
+        });
+    }//GEN-LAST:event_botonContinuarActionPerformed
 
     /**
      * @param args the command line arguments
