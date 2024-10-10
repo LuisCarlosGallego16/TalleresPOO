@@ -4,6 +4,7 @@
  */
 package SegundoTallerSegundoCorte;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -55,6 +56,14 @@ public class Calculadora extends javax.swing.JFrame {
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                formKeyTyped(evt);
+            }
+        });
 
         etiquetaTitutlo1.setText("CALCULADORA");
 
@@ -187,8 +196,10 @@ public class Calculadora extends javax.swing.JFrame {
         etiquetaNumero2.setText("NUMERO 2:");
 
         campoNumero1.setEditable(false);
+        campoNumero1.setFocusable(false);
 
         campoNumero2.setEditable(false);
+        campoNumero2.setFocusable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -417,29 +428,144 @@ public class Calculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_botonRestarMouseClicked
 
     private void botonMultiplicarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonMultiplicarMouseClicked
-         int numero1 = Integer.parseInt(campoNumero1.getText());
+        int numero1 = Integer.parseInt(campoNumero1.getText());
         int numero2 = Integer.parseInt(campoNumero2.getText());
         int resultado = numero1 * numero2;
         campoResultado.setText(String.valueOf(resultado)); //El String.valueOF sirve para pasar de entero a string
         campoNumero1.setText("");
-        campoNumero2.setText("");       
+        campoNumero2.setText("");
     }//GEN-LAST:event_botonMultiplicarMouseClicked
 
     private void botonDividirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonDividirMouseClicked
-        int numero1 = Integer.parseInt(campoNumero1.getText());
-        int numero2 = Integer.parseInt(campoNumero2.getText());
-        if(numero2 != 0){
-                    int resultado = numero1 / numero2;
-        campoResultado.setText(String.valueOf(resultado)); //El String.valueOF sirve para pasar de entero a string
-        campoNumero1.setText("");
-        campoNumero2.setText("");
-        }else{
+        double numero1 = Double.parseDouble(campoNumero1.getText());
+        double numero2 = Double.parseDouble(campoNumero2.getText());
+        if (numero2 != 0) {
+            double resultado = numero1 / numero2;
+            campoResultado.setText(String.valueOf(resultado)); //El String.valueOF sirve para pasar de entero a string
+            campoNumero1.setText("");
+            campoNumero2.setText("");
+        } else {
             JOptionPane.showMessageDialog(null, "NO SE PUEDE REALIZAR DIVISON POR 0");
             campoNumero1.setText("");
             campoNumero2.setText("");
         }
 
     }//GEN-LAST:event_botonDividirMouseClicked
+
+    private void formKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyTyped
+        String numero = String.valueOf(evt.getKeyChar());
+        if (numero.equals("1")) {
+            if (campoNumero1.getText().equals("")) {
+                campoNumero1.setText("1");
+            } else if (campoNumero2.getText().equals("")) {
+                campoNumero2.setText("1");
+            }
+        }
+        if (numero.equals("2")) {
+            if (campoNumero1.getText().equals("")) {
+                campoNumero1.setText("2");
+            } else if (campoNumero2.getText().equals("")) {
+                campoNumero2.setText("2");
+            }
+        }
+        if (numero.equals("3")) {
+            if (campoNumero1.getText().equals("")) {
+                campoNumero1.setText("3");
+            } else if (campoNumero2.getText().equals("")) {
+                campoNumero2.setText("3");
+            }
+        }
+        if (numero.equals("4")) {
+            if (campoNumero1.getText().equals("")) {
+                campoNumero1.setText("4");
+            } else if (campoNumero2.getText().equals("")) {
+                campoNumero2.setText("4");
+            }
+        }
+        if (numero.equals("5")) {
+            if (campoNumero1.getText().equals("")) {
+                campoNumero1.setText("5");
+            } else if (campoNumero2.getText().equals("")) {
+                campoNumero2.setText("5");
+            }
+        }
+        if (numero.equals("6")) {
+            if (campoNumero1.getText().equals("")) {
+                campoNumero1.setText("6");
+            } else if (campoNumero2.getText().equals("")) {
+                campoNumero2.setText("6");
+            }
+        }
+        if (numero.equals("7")) {
+            if (campoNumero1.getText().equals("")) {
+                campoNumero1.setText("7");
+            } else if (campoNumero2.getText().equals("")) {
+                campoNumero2.setText("7");
+            }
+        }
+        if (numero.equals("8")) {
+            if (campoNumero1.getText().equals("")) {
+                campoNumero1.setText("8");
+            } else if (campoNumero2.getText().equals("")) {
+                campoNumero2.setText("8");
+            }
+        }
+        if (numero.equals("9")) {
+            if (campoNumero1.getText().equals("")) {
+                campoNumero1.setText("9");
+            } else if (campoNumero2.getText().equals("")) {
+                campoNumero2.setText("9");
+            }
+        }
+        if (numero.equals("0")) {
+            if (campoNumero1.getText().equals("")) {
+                campoNumero1.setText("0");
+            } else if (campoNumero2.getText().equals("")) {
+                campoNumero2.setText("0");
+            }
+        }
+    }//GEN-LAST:event_formKeyTyped
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ADD) {
+            int numero1 = Integer.parseInt(campoNumero1.getText());
+            int numero2 = Integer.parseInt(campoNumero2.getText());
+            int resultado = numero1 + numero2;
+            campoResultado.setText(String.valueOf(resultado));
+            campoNumero1.setText("");
+            campoNumero2.setText("");
+        }
+        if (evt.getKeyCode() == KeyEvent.VK_SUBTRACT) {
+            int numero1 = Integer.parseInt(campoNumero1.getText());
+            int numero2 = Integer.parseInt(campoNumero2.getText());
+            int resultado = numero1 - numero2;
+            campoResultado.setText(String.valueOf(resultado));
+            campoNumero1.setText("");
+            campoNumero2.setText("");
+        }
+        if (evt.getKeyCode() == KeyEvent.VK_MULTIPLY) {
+            int numero1 = Integer.parseInt(campoNumero1.getText());
+            int numero2 = Integer.parseInt(campoNumero2.getText());
+            int resultado = numero1 * numero2;
+            campoResultado.setText(String.valueOf(resultado));
+            campoNumero1.setText("");
+            campoNumero2.setText("");
+        }
+        if (evt.getKeyCode() == KeyEvent.VK_DIVIDE) {
+            double numero1 = Double.parseDouble(campoNumero1.getText());
+            double numero2 = Double.parseDouble(campoNumero2.getText());
+            if (numero2 != 0) {
+                double resultado = numero1 / numero2;
+                campoResultado.setText(String.valueOf(resultado)); //El String.valueOF sirve para pasar de entero a string
+                campoNumero1.setText("");
+                campoNumero2.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "NO SE PUEDE REALIZAR DIVISON POR 0");
+                campoNumero1.setText("");
+                campoNumero2.setText("");
+            }
+        }
+    }//GEN-LAST:event_formKeyPressed
 
     /**
      * @param args the command line arguments
