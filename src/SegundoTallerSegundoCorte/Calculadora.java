@@ -195,10 +195,8 @@ public class Calculadora extends javax.swing.JFrame {
 
         etiquetaNumero2.setText("NUMERO 2:");
 
-        campoNumero1.setEditable(false);
         campoNumero1.setFocusable(false);
 
-        campoNumero2.setEditable(false);
         campoNumero2.setFocusable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -336,6 +334,7 @@ public class Calculadora extends javax.swing.JFrame {
         } else if (campoNumero2.getText().equals("")) {
             campoNumero2.setText("1");
         }
+
     }//GEN-LAST:event_botonNumero1MouseClicked
 
     private void botonNumero2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNumero2MouseClicked
@@ -527,6 +526,10 @@ public class Calculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_formKeyTyped
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_MULTIPLY) {
+            JOptionPane.showConfirmDialog(this, "HAZ PRESIONADO LA TECLA N");
+        }
+
         if (evt.getKeyCode() == KeyEvent.VK_ADD) {
             int numero1 = Integer.parseInt(campoNumero1.getText());
             int numero2 = Integer.parseInt(campoNumero2.getText());
