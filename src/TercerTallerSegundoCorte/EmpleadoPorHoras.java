@@ -1,36 +1,36 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package TercerTallerSegundoCorte;
 
-/**
- *
- * @author luisc
- */
 public class EmpleadoPorHoras extends Empleado {
+
     private int horasTrabajadas;
     private double tarifaHora;
+    private double fondoSolidaridad;
+    private double retencionFuente;
 
-    public EmpleadoPorHoras(int horasTrabajadas, double tarifaHora, String nombre, String apellido, String numeroSeguridadSocial, double salarioBase) {
+    public EmpleadoPorHoras(int horasTrabajadas, double tarifaHora, double fondoSolidaridad, double retencionFuente, String nombre, String apellido, String numeroSeguridadSocial, double salarioBase) {
         super(nombre, apellido, numeroSeguridadSocial, salarioBase);
         this.horasTrabajadas = horasTrabajadas;
         this.tarifaHora = tarifaHora;
+        this.fondoSolidaridad = fondoSolidaridad;
+        this.retencionFuente = retencionFuente;
     }
-   /* @Override
-    public double calcularDevengado(){
-        super.calcularDevengado();
-            return salarioBase;
-    }
-    
+
     @Override
-    public double calcularDeducciones(){
-        
+    public double calcularDevengado() {
+        double salarioDevengadoHoras = horasTrabajadas * tarifaHora;
+        return salarioDevengadoHoras;
     }
+
     @Override
-    public void calcularSalarioNeto(){
-        
+    public double calcularDeducciones(double fondoSolidaridad, double retencionFuente) {
+        return fondoSolidaridad + retencionFuente;
     }
-    */
-    
+
+    @Override
+    public double calcularSalarioNeto(double fondoSolidaridad,double retencionFuente) {
+        double salarioBase = horasTrabajadas * tarifaHora;
+        double deducciones = calcularDeducciones(fondoSolidaridad, retencionFuente);
+        return salarioBase-deducciones;
+    }
+
 }

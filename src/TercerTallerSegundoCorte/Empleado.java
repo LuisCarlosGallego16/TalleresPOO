@@ -26,7 +26,7 @@ public class Empleado {
         return pagoPension + pagoSalud;
     }
 
-    public double calcularSalarioNeto(double pagoPension, double pagoSalud, double salarioBase) {
+    public double calcularSalarioNeto(double pagoPension, double pagoSalud) {
         double deduccionTotal = calcularDeducciones(pagoPension, pagoSalud);
         double salarioNetoTotal = salarioBase - deduccionTotal;
         return salarioNetoTotal;
