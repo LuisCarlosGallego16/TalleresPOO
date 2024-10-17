@@ -12,6 +12,8 @@ public class EmpleadoGerente extends EmpleadoPorSueldo{
     private double bonoMensual;
     private double impuestoRiqueza;
 
+
+    
     public EmpleadoGerente(String nombre, String apellido, String numeroSeguridadSocial, double salarioBase,double bonoMensual, double impuestoRiqueza, double sueldoMensual, double retencionFuente, double fondoSolidaridad, double pagoSalud, double pagoPension) {
         super(sueldoMensual, retencionFuente, fondoSolidaridad, pagoSalud, pagoPension, nombre, apellido, numeroSeguridadSocial, salarioBase);
         this.bonoMensual = bonoMensual;
@@ -19,9 +21,15 @@ public class EmpleadoGerente extends EmpleadoPorSueldo{
     }
     @Override
     public double calcularDevengado(){
-        return getSueldoMensual();
+        return sueldoMensual;
     }
-    
+    @Override
+    public double calcularDeducciones(){
+    //VARIABLES PARA REALIZAR OPERACIONES SOBRE LAS DEDUCCIONES DE IMPUESTO Y LEGALES DEL EMPLEADO
+    double deduccionImpuesto = sueldoMensual* impuestoRiqueza;
+    double deduccionesLegales = retencionFuente + fondoSolidaridad + pagoSalud + pagoPension + deduccionImpuesto;
+        return deduccionesLegales;
+    }
     
     
     

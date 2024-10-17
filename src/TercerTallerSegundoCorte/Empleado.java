@@ -5,15 +5,15 @@ package TercerTallerSegundoCorte;
 
 public class Empleado {
 
-    private String nombre;
-    private String apellido;
-    String numeroSeguridadSocial;
-    private double salarioBase;
+    protected String nombre;
+    protected String apellido;
+    protected String numeroSeguridadSocial;
+    protected double salarioBase;
 
     //Creo dos atributos para el calculo de ducciones, para hacerlo mejor tomo las deducciones del empleadoSueldo
     //Tambien lo hago para no tener que pasar parametros a los metodos y poder hacer bien la sobrescritura.
-    private double pagoPension;
-    private double pagoSalud;
+    protected double pagoPension;
+    protected double pagoSalud;
 
     public Empleado(String nombre, String apellido, String numeroSeguridadSocial, double salarioBase) {
         this.nombre = nombre;
@@ -43,19 +43,5 @@ public class Empleado {
                 + "NUMERO SEGURIDAD SOCIAL: " + numeroSeguridadSocial + "\n"
                 + "SALARIO BASE:" + salarioBase;
     }
+   }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public String getNumeroSeguridadSocial() {
-        return numeroSeguridadSocial;
-    }
-    public double getSalarioBase(){
-        return salarioBase;
-    }
-}

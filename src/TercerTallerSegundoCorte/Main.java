@@ -12,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
        
-      /*  //EMPLEADO
+       //EMPLEADO
         Empleado empleado1 = new Empleado("Luis", "Gallego", "1054857310", 1245000);
         double salarioDevengadoEmpleado = empleado1.calcularDevengado();
         double calcularDeduccionesEmpleado = empleado1.calcularDeducciones();
@@ -35,7 +35,7 @@ public class Main {
         System.out.println("SALARIO DEVENGADO MENSUAL: "+empleadoSueldo1.calcularDevengado()+"\n");
         System.out.println("DEDUCCIONES TOTALES MENSUALES: "+empleadoSueldo1.calcularDeducciones());
         System.out.println("SALARIO TOTAL EMPLEADO: "+empleadoSueldo1.calcularSalarioNeto());
-        */
+        
       
         //EMPLEADO GERENTE
         EmpleadoGerente empleadoGerente1 = new EmpleadoGerente("Juan","Giraldo","106058745",0,1000000,0.15,3000000,100000,80000,90000,120000);
@@ -44,5 +44,7 @@ public class Main {
         
         
         
+        
+            
+        }   
     }
-}

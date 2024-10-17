@@ -38,8 +38,8 @@ public class EmpleadoPorHoras extends Empleado {
     @Override
     public String getInformacion(){
                return "EMPLEADO POR HORA \n"
-                + "NOMBRE: " + getNombre() + "\n" + "APELLIDO: " + getApellido() + "\n"
-                + "NUMERO SEGURIDAD SOCIAL: " + getNumeroSeguridadSocial() + "\n"
-                + "SALARIO BASE:" + getSalarioBase();
+                + "NOMBRE: " + nombre + "\n" + "APELLIDO: " + apellido + "\n"
+                + "NUMERO SEGURIDAD SOCIAL: " + numeroSeguridadSocial + "\n"
+                + "SALARIO BASE:" + salarioBase;
     }
 }

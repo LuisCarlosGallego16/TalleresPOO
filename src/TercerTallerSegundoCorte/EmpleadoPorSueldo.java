@@ -10,14 +10,11 @@ package TercerTallerSegundoCorte;
  */
 public class EmpleadoPorSueldo extends Empleado {
 
-    private double sueldoMensual;
-    private double retencionFuente;
-    private double fondoSolidaridad;
-    private double pagoSalud;
-    private double pagoPension;
-
-    //VARIABLE PARA ALMACENAR TODAS LAS DEDUCCIONES DEL EMPLEADO
-    double deduccionesTotales = retencionFuente + fondoSolidaridad + pagoSalud + pagoPension;
+    protected double sueldoMensual;
+    protected double retencionFuente;
+    protected double fondoSolidaridad;
+    protected double pagoSalud;
+    protected double pagoPension;
 
     public EmpleadoPorSueldo(double sueldoMensual, double retencionFuente, double fondoSolidaridad, double pagoSalud, double pagoPension, String nombre, String apellido, String numeroSeguridadSocial, double salarioBase) {
         super(nombre, apellido, numeroSeguridadSocial, salarioBase);
@@ -28,6 +25,7 @@ public class EmpleadoPorSueldo extends Empleado {
         this.pagoPension = pagoPension;
     }
 
+
     @Override
     public double calcularDevengado() {
         return sueldoMensual;
@@ -35,43 +33,22 @@ public class EmpleadoPorSueldo extends Empleado {
 
     @Override
     public double calcularDeducciones() {
+        double deduccionesTotales = retencionFuente + fondoSolidaridad + pagoSalud + pagoPension;
         return deduccionesTotales;
 
     }
 
     @Override
     public double calcularSalarioNeto() {
+        double deduccionesTotales = retencionFuente + fondoSolidaridad + pagoSalud + pagoPension;
         return sueldoMensual - deduccionesTotales;
     }
 
     @Override
     public String getInformacion() {
         return "EMPLEADO POR SUELDO \n"
-                + "NOMBRE: " + getNombre() + "\n" + "APELLIDO: " + getApellido() + "\n"
-                + "NUMERO SEGURIDAD SOCIAL: " + getNumeroSeguridadSocial() + "\n"
+                + "NOMBRE: " + nombre + "\n" + "APELLIDO: " + apellido + "\n"
+                + "NUMERO SEGURIDAD SOCIAL: " + numeroSeguridadSocial + "\n"
                 + "SALARIO BASE:" + sueldoMensual;
     }
-
-    public double getSueldoMensual() {
-        return sueldoMensual;
-    }
-
-    public double getRetencionFuente() {
-        return retencionFuente;
-    }
-
-    public double getFondoSolidaridad() {
-        return fondoSolidaridad;
-    }
-
-    public double getPagoSalud() {
-        return pagoSalud;
-    }
-
-    public double getPagoPension() {
-        return pagoPension;
-    }
-    
-    
-    
 }
