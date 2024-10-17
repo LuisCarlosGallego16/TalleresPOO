@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package TercerTallerSegundoCorte;
 
-/**
- *
- * @author luisc
- */
 public class EmpleadoGerente extends EmpleadoPorSueldo{
     private double bonoMensual;
     private double impuestoRiqueza;
@@ -30,7 +22,19 @@ public class EmpleadoGerente extends EmpleadoPorSueldo{
     double deduccionesLegales = retencionFuente + fondoSolidaridad + pagoSalud + pagoPension + deduccionImpuesto;
         return deduccionesLegales;
     }
+    @Override
+    public double calcularSalarioNeto(){
+        double salarioMensual = sueldoMensual + bonoMensual;
+        double salarioNeto = salarioMensual - calcularDeducciones();
+            return salarioNeto;
+    }
     
-    
-    
+   @Override
+   public String getInformacion(){
+               return "EMPLEADO GERENTE \n"
+                + "NOMBRE: " + nombre + "\n" + "APELLIDO: " + apellido + "\n"
+                + "NUMERO SEGURIDAD SOCIAL: " + numeroSeguridadSocial + "\n"
+                + "BONO MENSUAL: "+bonoMensual + "\n"      
+                + "SALARIO MENSUAL:" + sueldoMensual;
+   }
 }

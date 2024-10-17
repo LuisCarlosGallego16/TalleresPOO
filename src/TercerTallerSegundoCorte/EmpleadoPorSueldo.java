@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package TercerTallerSegundoCorte;
 
-/**
- *
- * @author luisc
- */
+package TercerTallerSegundoCorte;
 public class EmpleadoPorSueldo extends Empleado {
 
     protected double sueldoMensual;
@@ -49,6 +41,6 @@ public class EmpleadoPorSueldo extends Empleado {
         return "EMPLEADO POR SUELDO \n"
                 + "NOMBRE: " + nombre + "\n" + "APELLIDO: " + apellido + "\n"
                 + "NUMERO SEGURIDAD SOCIAL: " + numeroSeguridadSocial + "\n"
-                + "SALARIO BASE:" + sueldoMensual;
+                + "SALARIO MENSUAL:" + sueldoMensual;
     }
 }
