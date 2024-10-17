@@ -22,15 +22,24 @@ public class EmpleadoPorHoras extends Empleado {
     }
 
     @Override
-    public double calcularDeducciones(double fondoSolidaridad, double retencionFuente) {
-        return fondoSolidaridad + retencionFuente;
+    public double calcularDeducciones() {
+        double deduccionesTotales = fondoSolidaridad + retencionFuente;
+        return deduccionesTotales;
     }
 
     @Override
-    public double calcularSalarioNeto(double fondoSolidaridad,double retencionFuente) {
+    public double calcularSalarioNeto() {
         double salarioBase = horasTrabajadas * tarifaHora;
-        double deducciones = calcularDeducciones(fondoSolidaridad, retencionFuente);
-        return salarioBase-deducciones;
+        double deducciones = fondoSolidaridad + retencionFuente;
+        double salarioNetoTotal = salarioBase - deducciones;
+        return salarioNetoTotal;
+                    
     }
-
+    @Override
+    public String getInformacion(){
+               return "EMPLEADO POR HORA \n"
+                + "NOMBRE: " + getNombre() + "\n" + "APELLIDO: " + getApellido() + "\n"
+                + "NUMERO SEGURIDAD SOCIAL: " + getNumeroSeguridadSocial() + "\n"
+                + "SALARIO BASE:" + getSalarioBase();
+    }
 }

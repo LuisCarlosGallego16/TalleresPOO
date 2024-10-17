@@ -352,13 +352,11 @@
     </Component>
     <Component class="javax.swing.JTextField" name="campoNumero1">
       <Properties>
-        <Property name="editable" type="boolean" value="false"/>
         <Property name="focusable" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="campoNumero2">
       <Properties>
-        <Property name="editable" type="boolean" value="false"/>
         <Property name="focusable" type="boolean" value="false"/>
       </Properties>
     </Component>

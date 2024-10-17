@@ -8,6 +8,21 @@ package TercerTallerSegundoCorte;
  *
  * @author luisc
  */
-public class EmpleadoGerente {
+public class EmpleadoGerente extends EmpleadoPorSueldo{
+    private double bonoMensual;
+    private double impuestoRiqueza;
+
+    public EmpleadoGerente(String nombre, String apellido, String numeroSeguridadSocial, double salarioBase,double bonoMensual, double impuestoRiqueza, double sueldoMensual, double retencionFuente, double fondoSolidaridad, double pagoSalud, double pagoPension) {
+        super(sueldoMensual, retencionFuente, fondoSolidaridad, pagoSalud, pagoPension, nombre, apellido, numeroSeguridadSocial, salarioBase);
+        this.bonoMensual = bonoMensual;
+        this.impuestoRiqueza = impuestoRiqueza;
+    }
+    @Override
+    public double calcularDevengado(){
+        return getSueldoMensual();
+    }
+    
+    
+    
     
 }

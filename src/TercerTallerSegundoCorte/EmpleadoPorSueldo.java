@@ -16,6 +16,9 @@ public class EmpleadoPorSueldo extends Empleado {
     private double pagoSalud;
     private double pagoPension;
 
+    //VARIABLE PARA ALMACENAR TODAS LAS DEDUCCIONES DEL EMPLEADO
+    double deduccionesTotales = retencionFuente + fondoSolidaridad + pagoSalud + pagoPension;
+
     public EmpleadoPorSueldo(double sueldoMensual, double retencionFuente, double fondoSolidaridad, double pagoSalud, double pagoPension, String nombre, String apellido, String numeroSeguridadSocial, double salarioBase) {
         super(nombre, apellido, numeroSeguridadSocial, salarioBase);
         this.sueldoMensual = sueldoMensual;
@@ -25,8 +28,50 @@ public class EmpleadoPorSueldo extends Empleado {
         this.pagoPension = pagoPension;
     }
 
+    @Override
+    public double calcularDevengado() {
+        return sueldoMensual;
+    }
+
+    @Override
+    public double calcularDeducciones() {
+        return deduccionesTotales;
+
+    }
+
+    @Override
+    public double calcularSalarioNeto() {
+        return sueldoMensual - deduccionesTotales;
+    }
+
+    @Override
+    public String getInformacion() {
+        return "EMPLEADO POR SUELDO \n"
+                + "NOMBRE: " + getNombre() + "\n" + "APELLIDO: " + getApellido() + "\n"
+                + "NUMERO SEGURIDAD SOCIAL: " + getNumeroSeguridadSocial() + "\n"
+                + "SALARIO BASE:" + sueldoMensual;
+    }
+
+    public double getSueldoMensual() {
+        return sueldoMensual;
+    }
+
+    public double getRetencionFuente() {
+        return retencionFuente;
+    }
+
+    public double getFondoSolidaridad() {
+        return fondoSolidaridad;
+    }
+
+    public double getPagoSalud() {
+        return pagoSalud;
+    }
+
+    public double getPagoPension() {
+        return pagoPension;
+    }
+    
+    
+    
 }
-
-
-
-

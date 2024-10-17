@@ -7,8 +7,13 @@ public class Empleado {
 
     private String nombre;
     private String apellido;
-    private String numeroSeguridadSocial;
+    String numeroSeguridadSocial;
     private double salarioBase;
+
+    //Creo dos atributos para el calculo de ducciones, para hacerlo mejor tomo las deducciones del empleadoSueldo
+    //Tambien lo hago para no tener que pasar parametros a los metodos y poder hacer bien la sobrescritura.
+    private double pagoPension;
+    private double pagoSalud;
 
     public Empleado(String nombre, String apellido, String numeroSeguridadSocial, double salarioBase) {
         this.nombre = nombre;
@@ -21,13 +26,13 @@ public class Empleado {
         return salarioBase;
     }
 
-    //Se crean dos deducciones al empleado simulando el descuento
-    public double calcularDeducciones(double pagoPension, double pagoSalud) {
-        return pagoPension + pagoSalud;
+    public double calcularDeducciones() {
+        double deduccionesTotales = pagoPension + pagoSalud;
+        return deduccionesTotales;
     }
 
-    public double calcularSalarioNeto(double pagoPension, double pagoSalud) {
-        double deduccionTotal = calcularDeducciones(pagoPension, pagoSalud);
+    public double calcularSalarioNeto() {
+        double deduccionTotal = pagoPension + pagoSalud;
         double salarioNetoTotal = salarioBase - deduccionTotal;
         return salarioNetoTotal;
     }
@@ -37,5 +42,20 @@ public class Empleado {
                 + "NOMBRE: " + nombre + "\n" + "APELLIDO: " + apellido + "\n"
                 + "NUMERO SEGURIDAD SOCIAL: " + numeroSeguridadSocial + "\n"
                 + "SALARIO BASE:" + salarioBase;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public String getNumeroSeguridadSocial() {
+        return numeroSeguridadSocial;
+    }
+    public double getSalarioBase(){
+        return salarioBase;
     }
 }
