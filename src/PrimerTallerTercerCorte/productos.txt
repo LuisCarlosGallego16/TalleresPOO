@@ -1,0 +1,14 @@
+1212121,Leche,1222,Lacteos
+12334,Mantequilla,339393,Lacteo
+12,asd,asd,asd
+1212121,Leche,1222,Lacteos
+1212121,Leche,1222,Lacteos
+12334,Mantequilla,339393,Lacteo
+12,asd,asd,asd
+asd,asd,asd,asd
+1212121,Leche,1222,Lacteos
+1212121,Leche,1222,Lacteos
+12334,Mantequilla,339393,Lacteo
+12,asd,asd,asd
+asd,asd,asd,asd
+uno,dos,tres,cuatro
