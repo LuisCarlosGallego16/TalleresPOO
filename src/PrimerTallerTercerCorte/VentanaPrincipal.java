@@ -29,7 +29,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
         modelo = (DefaultTableModel) getTabla().getModel();
         guardarArchivo();
-        //cargarArchivos();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -81,7 +81,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             String linea;
 
             // Limpiar la tabla antes de cargar los nuevos datos
-            modelo.setRowCount(0); // Esto elimina todas las filas de la tabla
+            modelo.setRowCount(0); 
 
             // Leer cada línea del archivo
             while ((linea = bufferedReader.readLine()) != null) {
@@ -89,7 +89,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 String[] lista = linea.split(",");
 
                 // Agregar la fila a la tabla (cada elemento de la lista corresponde a una columna)
-                Object[] nuevaFila = {lista[0], lista[1], lista[2], lista[3]};  // Asumiendo que el archivo tiene 4 columnas
+                Object[] nuevaFila = {lista[0], lista[1], lista[2], lista[3]};  
                 modelo.addRow(nuevaFila);
             }
 
@@ -181,7 +181,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -192,22 +192,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addComponent(etiquetaTitulo2)
                             .addComponent(etiquetaTitulo3)
                             .addComponent(etiquetaTitulo4)
-                            .addComponent(etiquetaTitulo5))
+                            .addComponent(etiquetaTitulo5)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(64, 64, 64)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(campoCodigoProducto)
                             .addComponent(campoNombreProducto)
                             .addComponent(campoPrecioProducto)
-                            .addComponent(campoCategoriaProducto))))
-                .addGap(238, 238, 238))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(226, 226, 226)
-                .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addComponent(botonCargar)
-                .addGap(50, 50, 50)
-                .addComponent(botonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(175, 175, 175))
+                            .addComponent(campoCategoriaProducto)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(botonCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 77, Short.MAX_VALUE)))))
+                .addGap(20, 20, 20)
+                .addComponent(botonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                .addGap(115, 115, 115))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,11 +231,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(etiquetaTitulo5)
                     .addComponent(campoCategoriaProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(botonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                        .addComponent(botonGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(botonCargar, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(36, 36, 36))
         );
 
@@ -243,7 +242,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
