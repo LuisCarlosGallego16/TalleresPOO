@@ -217,7 +217,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         } else {
             Object[] nuevaFila = {codigoProducto, nombreProducto, precioProducto, categoriaProducto};
             modelo.addRow(nuevaFila);
-            // guardarArchivo();
             campoCodigoProducto.setText("");
             campoNombreProducto.setText("");
             campoPrecioProducto.setText("");
@@ -264,7 +263,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             String precioProducto = getCampoPrecioProducto();
             String categoriaProducto = getCampoCategoriaProducto();
             if(codigoProducto.isEmpty() || nombreProducto.isEmpty() || precioProducto.isEmpty() || categoriaProducto.isEmpty()){
-                JOptionPane.showMessageDialog(this, "Todos los campos deben de estar diligenciados");
+                JOptionPane.showMessageDialog(this, "TODOS LOS CAMPOS TIENEN QUE ESTAR COMPLETOS");
             }else{
                 modelo.setValueAt(codigoProducto, filaSeleccionada, 0);
                 modelo.setValueAt(nombreProducto, filaSeleccionada, 1);
