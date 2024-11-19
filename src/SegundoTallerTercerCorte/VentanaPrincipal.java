@@ -13,6 +13,8 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -25,7 +27,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         modelo = getModeloTabla();
-        guardarXML("productos");
+        
 
     }
 
@@ -41,12 +43,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     public void guardarXML(String nombreArchivo) {
         try {
-
             DefaultTableModel modelo = getModeloTabla();
 
-            if(modelo.getRowCount() == 0){
-                JOptionPane.showMessageDialog(this, "No hay productos para guardar");
-            }
+     
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document documento = (Document) builder.newDocument();
@@ -88,6 +87,52 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+  
+    public void cargarDesdeXML(String nombreArchivo) {
+    try {
+        File archivo = new File(nombreArchivo);
+
+        // Verificar si el archivo existe
+        if (!archivo.exists()) {
+            System.out.println("El archivo XML no existe. Se creará uno nuevo cuando se guarde.");
+            return;
+        }
+
+        // Cargar el archivo XML
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document documento = builder.parse(archivo);
+
+        // Obtener el nodo raíz y los nodos de productos
+        NodeList listaProductos = documento.getElementsByTagName("productos");
+
+        // Limpiar el modelo de la tabla
+        modelo.setRowCount(0);
+
+        // Iterar sobre los productos y agregar las filas al modelo de la tabla
+        for (int i = 0; i < listaProductos.getLength(); i++) {
+            Node productoNode = listaProductos.item(i);
+
+            if (productoNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element producto = (Element) productoNode;
+
+                String codigo = producto.getElementsByTagName("codigo").item(0).getTextContent();
+                String nombre = producto.getElementsByTagName("nombre").item(0).getTextContent();
+                String precio = producto.getElementsByTagName("precio").item(0).getTextContent();
+                String categoria = producto.getElementsByTagName("categoria").item(0).getTextContent();
+
+                // Agregar los datos al modelo de la tabla
+                modelo.addRow(new Object[]{codigo, nombre, precio, categoria});
+            }
+        }
+
+        System.out.println("Datos cargados desde el archivo XML.");
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error al cargar los datos desde el archivo XML");
+    }
+}
 
     @SuppressWarnings("unchecked")
 
@@ -185,6 +230,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         botonCargar.setText("CARGAR");
+        botonCargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCargarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -285,7 +335,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             campoNombreProducto.setText("");
             campoPrecioProducto.setText("");
             campoCategoriaProducto.setText("");
-            guardarXML("productos");
+            guardarXML("productos.xml");
         }
     }//GEN-LAST:event_botonGuardarActionPerformed
 
@@ -339,12 +389,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 campoNombreProducto.setText("");
                 campoPrecioProducto.setText("");
                 campoCategoriaProducto.setText("");
+                guardarXML("productos.xml");
                 JOptionPane.showMessageDialog(this, "PRODUCTO ACTUALIZADO ");
             }
         } else {
             JOptionPane.showMessageDialog(this, "POR FAVOR SELECCIONE UN PRODUCTO ");
         }
     }//GEN-LAST:event_botonEditarActionPerformed
+
+    private void botonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarActionPerformed
+        cargarDesdeXML("productos.xml");
+    }//GEN-LAST:event_botonCargarActionPerformed
 
     /**
      * @param args the command line arguments
