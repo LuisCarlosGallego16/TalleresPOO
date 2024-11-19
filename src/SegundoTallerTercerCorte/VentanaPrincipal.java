@@ -1,30 +1,39 @@
-
 package SegundoTallerTercerCorte;
 
+import java.io.File;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.Document;
+import javax.swing.text.Element;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 /**
  *
  * @author luisc
  */
-
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     private DefaultTableModel modelo;
 
     public VentanaPrincipal() {
         initComponents();
-        modelo = (DefaultTableModel) getTabla().getModel();
+        modelo = getModeloTabla();
 
     }
 
+    //Metodo para obtener el modelo de la tabla
+    public DefaultTableModel getModeloTabla(){
+        return (DefaultTableModel) getTabla().getModel();
+    }
+    
     //Metodo para obtener la tabla
     public JTable getTabla() {
         return jTable1;
     }
 
+ 
     @SuppressWarnings("unchecked")
 
     //Getters para obtener los datos de los campos de texto 
@@ -257,64 +266,64 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
         int filaSeleccionada = jTable1.getSelectedRow();
-        if(filaSeleccionada != -1){
+        if (filaSeleccionada != -1) {
             String codigoProducto = getCampoCodigoProducto();
-            String nombreProducto =  getCampoNombreProducto();
+            String nombreProducto = getCampoNombreProducto();
             String precioProducto = getCampoPrecioProducto();
             String categoriaProducto = getCampoCategoriaProducto();
-            if(codigoProducto.isEmpty() || nombreProducto.isEmpty() || precioProducto.isEmpty() || categoriaProducto.isEmpty()){
+            if (codigoProducto.isEmpty() || nombreProducto.isEmpty() || precioProducto.isEmpty() || categoriaProducto.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "TODOS LOS CAMPOS TIENEN QUE ESTAR COMPLETOS");
-            }else{
+            } else {
                 modelo.setValueAt(codigoProducto, filaSeleccionada, 0);
                 modelo.setValueAt(nombreProducto, filaSeleccionada, 1);
                 modelo.setValueAt(precioProducto, filaSeleccionada, 2);
                 modelo.setValueAt(categoriaProducto, filaSeleccionada, 3);
-                
+
                 campoCodigoProducto.setText("");
                 campoNombreProducto.setText("");
                 campoPrecioProducto.setText("");
                 campoCategoriaProducto.setText("");
-                JOptionPane.showMessageDialog(this, "PRODUCTO ACTUALIZADO ");         
+                JOptionPane.showMessageDialog(this, "PRODUCTO ACTUALIZADO ");
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "POR FAVOR SELECCIONE UN PRODUCTO ");
-        }  
+        }
     }//GEN-LAST:event_botonEditarActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-    /* Set the Nimbus look and feel */
-    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-     */
-    try {
-        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-                javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                break;
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
             }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    } catch (ClassNotFoundException ex) {
-        java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (InstantiationException ex) {
-        java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (IllegalAccessException ex) {
-        java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-        java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
-    //</editor-fold>
+        //</editor-fold>
 
-    /* Create and display the form */
-    java.awt.EventQueue.invokeLater(new Runnable() {
-        public void run() {
-            new VentanaPrincipal().setVisible(true);
-        }
-    });
-}
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new VentanaPrincipal().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCargar;
