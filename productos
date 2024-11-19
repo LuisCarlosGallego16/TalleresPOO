@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<productos>
+    <producto>
+        <codigo>31212</codigo>
+        <nombre>mantequilla</nombre>
+        <precio>1212</precio>
+        <categoria>lacteo</categoria>
+    </producto>
+    <producto>
+        <codigo>45465</codigo>
+        <nombre>leche</nombre>
+        <precio>6565</precio>
+        <categoria>lacteo</categoria>
+    </producto>
+</productos>

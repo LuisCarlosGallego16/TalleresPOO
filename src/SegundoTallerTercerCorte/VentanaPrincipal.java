@@ -4,10 +4,15 @@ import java.io.File;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.Document;
-import javax.swing.text.Element;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 /**
  *
@@ -20,20 +25,70 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         modelo = getModeloTabla();
+        guardarXML("productos");
 
     }
 
     //Metodo para obtener el modelo de la tabla
-    public DefaultTableModel getModeloTabla(){
+    public DefaultTableModel getModeloTabla() {
         return (DefaultTableModel) getTabla().getModel();
     }
-    
+
     //Metodo para obtener la tabla
     public JTable getTabla() {
         return jTable1;
     }
 
- 
+    public void guardarXML(String nombreArchivo) {
+        try {
+
+            DefaultTableModel modelo = getModeloTabla();
+
+            if(modelo.getRowCount() == 0){
+                JOptionPane.showMessageDialog(this, "No hay productos para guardar");
+            }
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document documento = (Document) builder.newDocument();
+
+            Element raiz = documento.createElement("productos");
+            documento.appendChild(raiz);
+
+            for (int i = 0; i < modelo.getRowCount(); i++) {
+                Element producto = documento.createElement("producto");
+
+                Element codigo = documento.createElement("codigo");
+                codigo.appendChild(documento.createTextNode(modelo.getValueAt(i, 0).toString()));
+                producto.appendChild(codigo);
+
+                Element nombre = documento.createElement("nombre");
+                nombre.appendChild(documento.createTextNode(modelo.getValueAt(i, 1).toString()));
+                producto.appendChild(nombre);
+
+                Element precio = documento.createElement("precio");
+                precio.appendChild(documento.createTextNode(modelo.getValueAt(i, 2).toString()));
+                producto.appendChild(precio);
+
+                Element categoria = documento.createElement("categoria");
+                categoria.appendChild(documento.createTextNode(modelo.getValueAt(i, 3).toString()));
+                producto.appendChild(categoria);
+
+                raiz.appendChild(producto);
+            }
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            DOMSource domSource = new DOMSource(documento);
+            StreamResult streamResult = new StreamResult(new File(nombreArchivo));
+            transformer.transform(domSource, streamResult);
+
+            System.out.println("Archivo XML generado correctamente: " + nombreArchivo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @SuppressWarnings("unchecked")
 
     //Getters para obtener los datos de los campos de texto 
@@ -230,6 +285,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             campoNombreProducto.setText("");
             campoPrecioProducto.setText("");
             campoCategoriaProducto.setText("");
+            guardarXML("productos");
         }
     }//GEN-LAST:event_botonGuardarActionPerformed
 
