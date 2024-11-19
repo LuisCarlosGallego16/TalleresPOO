@@ -44,8 +44,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public void guardarXML(String nombreArchivo) {
         try {
             DefaultTableModel modelo = getModeloTabla();
-
-     
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document documento = (Document) builder.newDocument();
@@ -109,7 +107,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // Limpiar el modelo de la tabla
         modelo.setRowCount(0);
 
-        // Iterar sobre los productos y agregar las filas al modelo de la tabla
+        //agregar las filas al modelo de la tabla
         for (int i = 0; i < listaProductos.getLength(); i++) {
             Node productoNode = listaProductos.item(i);
 
@@ -345,6 +343,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if (confirmacion == JOptionPane.YES_OPTION) {
             if (filaSeleccionada != -1) {
                 modelo.removeRow(filaSeleccionada);
+                guardarXML("productos.xml");
                 JOptionPane.showMessageDialog(this, "PRODUCTO ELIMINADO CORRECTAMENTE");
                 campoCodigoProducto.setText("");
                 campoNombreProducto.setText("");
