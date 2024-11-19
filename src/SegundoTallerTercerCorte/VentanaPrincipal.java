@@ -16,10 +16,6 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-/**
- *
- * @author luisc
- */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     private DefaultTableModel modelo;
@@ -27,8 +23,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         modelo = getModeloTabla();
-        
-
     }
 
     //Metodo para obtener el modelo de la tabla
@@ -41,6 +35,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return jTable1;
     }
 
+    //Metodo para crear y guardar datos en archivo xml
     public void guardarXML(String nombreArchivo) {
         try {
             DefaultTableModel modelo = getModeloTabla();
@@ -86,6 +81,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }
   
+    //Metodo para obtener los datos del archivo xml para mostrar en la tabla
     public void cargarDesdeXML(String nombreArchivo) {
     try {
         File archivo = new File(nombreArchivo);
@@ -333,7 +329,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             campoNombreProducto.setText("");
             campoPrecioProducto.setText("");
             campoCategoriaProducto.setText("");
-            guardarXML("productos.xml");
+            guardarXML("productos.xml"); //Despues de agregar los datos a la tabla, los agregamos al archivo.
         }
     }//GEN-LAST:event_botonGuardarActionPerformed
 
@@ -343,7 +339,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if (confirmacion == JOptionPane.YES_OPTION) {
             if (filaSeleccionada != -1) {
                 modelo.removeRow(filaSeleccionada);
-                guardarXML("productos.xml");
+                guardarXML("productos.xml"); // Despues de eliminar una fila que corresponde a productos, actualizamos el archivo xml para borrar  ese producto del archivo xml.
                 JOptionPane.showMessageDialog(this, "PRODUCTO ELIMINADO CORRECTAMENTE");
                 campoCodigoProducto.setText("");
                 campoNombreProducto.setText("");
@@ -388,7 +384,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 campoNombreProducto.setText("");
                 campoPrecioProducto.setText("");
                 campoCategoriaProducto.setText("");
-                guardarXML("productos.xml");
+                guardarXML("productos.xml"); //Una vez editado la fila del producto, actualizamos nuestro archivo tomando los nuevos datos 
                 JOptionPane.showMessageDialog(this, "PRODUCTO ACTUALIZADO ");
             }
         } else {
@@ -397,7 +393,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEditarActionPerformed
 
     private void botonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarActionPerformed
-        cargarDesdeXML("productos.xml");
+        cargarDesdeXML("productos.xml"); //Aca cargamos el archivo xml con los productos agregados previamente. 
+        
     }//GEN-LAST:event_botonCargarActionPerformed
 
     /**
