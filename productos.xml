@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<productos/>
+<productos>
+    <producto>
+        <codigo>1060</codigo>
+        <nombre>Mantequilla </nombre>
+        <precio>145000</precio>
+        <categoria>lacteo</categoria>
+    </producto>
+    <producto>
+        <codigo>1030</codigo>
+        <nombre>Crema</nombre>
+        <precio>6000</precio>
+        <categoria>lacteo</categoria>
+    </producto>
+</productos>
