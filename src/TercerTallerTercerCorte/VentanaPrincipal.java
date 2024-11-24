@@ -4,6 +4,7 @@
  */
 package TercerTallerTercerCorte;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,11 +14,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-   private DefaultTableModel modelo;
+    private DefaultTableModel modelo;
 
     public VentanaPrincipal() {
         initComponents();
-          modelo = getModeloTabla();
+        modelo = getModeloTabla();
     }
 
     //Metodo para obtener el modelo de la tabla
@@ -29,35 +30,41 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public JTable getTabla() {
         return jTable1;
     }
-    
-    public String getCampoCodigoProducto(){
+
+    //Getters para obtener los valores de los campos de texto
+    public String getCampoCodigoProducto() {
         return campoCodigoProducto.getText();
     }
-    
-    public String getCampoNombreProducto(){
+
+    public String getCampoNombreProducto() {
         return campoNombreProducto.getText();
     }
-    
-    public String getCampoCantidadProducto(){
+
+    public String getCampoCantidadProducto() {
         return campoCantidadProducto.getText();
     }
-    
-    public String getCampoPrecioProducto(){
+
+    public String getCampoPrecioProducto() {
         return campoPrecioProducto.getText();
     }
-    
-    public String getCampoImpuestoProducto(){
+
+    public String getCampoImpuestoProducto() {
         return campoImpuestoProducto.getText();
     }
-    
-    public double precioTotalProducto(){
+
+    public String getCampoPrecioTotal() {
+        return campoPrecioTotal.getText();
+    }
+
+    //Metodo para calcular el precio de un producto
+    public double precioTotalProducto() {
         double precioProducto = Double.parseDouble(getCampoPrecioProducto());
         double impuestoProducto = Double.parseDouble(getCampoImpuestoProducto());
-        double precioTotalProducto = precioProducto + impuestoProducto;
+        int cantidadProducto = Integer.parseInt(getCampoCantidadProducto());
+        double precioTotalProducto = cantidadProducto * (precioProducto +impuestoProducto);
         return precioTotalProducto;
     }
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -81,6 +88,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         botonEditar = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
         botonCargar = new javax.swing.JButton();
+        etiquetaTitulo7 = new javax.swing.JLabel();
+        campoPrecioTotal = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,6 +103,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ));
         jTable1.getTableHeader().setResizingAllowed(false);
         jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -131,12 +145,32 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         campoPrecioProducto.setToolTipText("");
 
         botonGuardar.setText("GUARDAR");
+        botonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarActionPerformed(evt);
+            }
+        });
 
         botonEditar.setText("EDITAR");
+        botonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEditarActionPerformed(evt);
+            }
+        });
 
         botonEliminar.setText("ELIMINAR");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
 
         botonCargar.setText("CARGAR");
+
+        etiquetaTitulo7.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        etiquetaTitulo7.setText("PRECIO TOTAL DEL PRODUCTO:");
+
+        campoPrecioTotal.setEditable(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -147,10 +181,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(303, 303, 303)
                         .addComponent(botonGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonEditar)
                         .addGap(60, 60, 60)
                         .addComponent(botonEliminar)
+                        .addGap(28, 28, 28))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(etiquetaTitulo1)
                         .addGap(17, 17, 17))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addGap(289, 289, 289)
@@ -174,12 +212,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(etiquetaTitulo5)
                                 .addGap(18, 18, 18)
-                                .addComponent(campoPrecioProducto))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(etiquetaTitulo1)
-                        .addGap(6, 6, 6)))
-                .addGap(48, 48, 48)
+                                .addComponent(campoPrecioProducto))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(etiquetaTitulo7)
+                                .addGap(18, 18, 18)
+                                .addComponent(campoPrecioTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(37, 37, 37)
                 .addComponent(botonCargar)
                 .addGap(272, 272, 272))
         );
@@ -208,12 +247,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(campoImpuestoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiquetaTitulo7)
+                    .addComponent(campoPrecioTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(botonCargar, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(botonGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botonEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonEditar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonGuardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -238,6 +281,91 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
+        String codigoProducto = getCampoCodigoProducto();
+        String nombreProducto = getCampoNombreProducto();
+        String cantidadProducto = getCampoCantidadProducto();
+        String precioProducto = getCampoPrecioProducto();
+        String impuestoProducto = getCampoImpuestoProducto();
+        
+
+        if (codigoProducto.isEmpty()
+                || nombreProducto.isEmpty()
+                || cantidadProducto.isEmpty()
+                || precioProducto.isEmpty()
+                || impuestoProducto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "TODOS LOS CAMPOS TIENE QUE ESTAR DILIGENCIADOS!", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+        } else {
+            double precioTotalProducto = precioTotalProducto();
+            Object[] nuevaFila = {codigoProducto, nombreProducto, cantidadProducto, precioProducto, impuestoProducto, precioTotalProducto};
+            modelo.addRow(nuevaFila);
+            campoCodigoProducto.setText("");
+            campoNombreProducto.setText("");
+            campoCantidadProducto.setText("");
+            campoPrecioProducto.setText("");
+            campoImpuestoProducto.setText("");
+        }
+    }//GEN-LAST:event_botonGuardarActionPerformed
+
+    private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            String codigoProducto = getCampoCodigoProducto();
+            String nombreProducto = getCampoNombreProducto();
+            String cantidadProducto = getCampoCantidadProducto();
+            String precioProducto = getCampoPrecioProducto();
+            String impuestoProducto = getCampoImpuestoProducto();
+            if (codigoProducto.isEmpty() || nombreProducto.isEmpty() || cantidadProducto.isEmpty() || precioProducto.isEmpty()
+                    || precioProducto.isEmpty() || impuestoProducto.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "ADVERTENCIA", "TODOS LOS CAMPOS TIENE QUE ESTAR DILIGENCIADOS!", JOptionPane.WARNING_MESSAGE);
+            } else {
+                modelo.setValueAt(codigoProducto, filaSeleccionada, 0);
+                modelo.setValueAt(nombreProducto, filaSeleccionada, 1);
+                modelo.setValueAt(cantidadProducto, filaSeleccionada, 2);
+                modelo.setValueAt(precioProducto, filaSeleccionada, 3);
+                modelo.setValueAt(impuestoProducto, filaSeleccionada, 4);
+                modelo.setValueAt(precioTotalProducto(), filaSeleccionada, 5);
+            }
+        }
+
+
+    }//GEN-LAST:event_botonEditarActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+
+        int filaSeleccionada = jTable1.getSelectedRow();
+
+        if (filaSeleccionada != -1) {
+            campoCodigoProducto.setText(modelo.getValueAt(filaSeleccionada, 0).toString());
+            campoNombreProducto.setText(modelo.getValueAt(filaSeleccionada, 1).toString());
+            campoCantidadProducto.setText(modelo.getValueAt(filaSeleccionada, 2).toString());
+            campoPrecioProducto.setText(modelo.getValueAt(filaSeleccionada, 3).toString());
+            campoImpuestoProducto.setText(modelo.getValueAt(filaSeleccionada, 4).toString());
+            campoPrecioTotal.setText(modelo.getValueAt(filaSeleccionada, 5).toString());
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        int confirmacion = JOptionPane.showConfirmDialog(this, "¿ESTAS SEGURO DE ELIMINAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if(confirmacion == JOptionPane.YES_OPTION){
+            if(filaSeleccionada != -1){
+                modelo.removeRow(filaSeleccionada);
+                JOptionPane.showConfirmDialog(this, "FACTURA ELIMINADA CORRECTAMENTE");
+                campoCodigoProducto.setText("");
+                campoNombreProducto.setText("");
+                campoCantidadProducto.setText("");
+                campoPrecioProducto.setText("");
+                campoImpuestoProducto.setText("");
+                campoPrecioTotal.setText("");
+            }else{
+                JOptionPane.showConfirmDialog(this, "SELECCIONADA UNA FACTURA  PARA ELIMINAR");
+            }
+        }else{
+            JOptionPane.showConfirmDialog(this, "NO HAZ ELIMINADO NINGUNA FACTURA ");
+        }
+    }//GEN-LAST:event_botonEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -284,11 +412,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField campoImpuestoProducto;
     private javax.swing.JTextField campoNombreProducto;
     private javax.swing.JTextField campoPrecioProducto;
+    private javax.swing.JTextField campoPrecioTotal;
     private javax.swing.JLabel etiquetaTitulo1;
     private javax.swing.JLabel etiquetaTitulo2;
     private javax.swing.JLabel etiquetaTitulo3;
     private javax.swing.JLabel etiquetaTitulo4;
     private javax.swing.JLabel etiquetaTitulo5;
+    private javax.swing.JLabel etiquetaTitulo7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

@@ -354,7 +354,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        //Al momento de seleccionar una fila de la tabla, este pondra los datos del producto en los campos de texto correspondiente.  
+       //Al momento de seleccionar una fila de la tabla, este pondra los datos del producto en los campos de texto correspondiente.  
         int filaSeleccionada = jTable1.getSelectedRow();
         
         if (filaSeleccionada != -1) {
