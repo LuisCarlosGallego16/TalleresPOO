@@ -4,6 +4,11 @@
  */
 package TercerTallerTercerCorte;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -63,6 +68,33 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         int cantidadProducto = Integer.parseInt(getCampoCantidadProducto());
         double precioTotalProducto = cantidadProducto * (precioProducto +impuestoProducto);
         return precioTotalProducto;
+    }
+    
+    public void guardarArchivoJSON(){
+        //Lista para almacener los objetos factura
+        List<Factura> listaFacturas = new ArrayList<>();
+        
+        //Iterar sobre cada fila de la tabla para obtener los valores
+        for(int i = 0 ; i<modelo.getRowCount();i++){
+            int codigoProducto = Integer.parseInt(modelo.getValueAt(i, 0).toString());
+            String nombreProducto = modelo.getValueAt(i,1).toString();
+            int cantidadProducto = Integer.parseInt(modelo.getValueAt(i, 2).toString());
+            double precioProducto = Double.parseDouble(modelo.getValueAt(i, 3).toString());
+            double impuestoProducto = Double.parseDouble(modelo.getValueAt(i, 4).toString());
+            double precioTotalProducto = Double.parseDouble(modelo.getValueAt(i, 5).toString());
+             
+            //Creamos un objeto factura, con los datos que obtenemos de cada fila de la tabla.
+            Factura factura = new Factura(codigoProducto,nombreProducto,cantidadProducto,precioProducto,impuestoProducto,precioTotalProducto);
+            listaFacturas.add(factura);
+        } 
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        try(FileWriter file = new FileWriter("facturas.json")){
+            gson.toJson(listaFacturas,file);
+            JOptionPane.showMessageDialog(this, "Datos guardados correctamente en el archivo JSON");
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(this, "ERROR AL GUARDAR LOS DATOS EN EL ARCHIVO JSON ");
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -288,8 +320,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         String cantidadProducto = getCampoCantidadProducto();
         String precioProducto = getCampoPrecioProducto();
         String impuestoProducto = getCampoImpuestoProducto();
-        
-
         if (codigoProducto.isEmpty()
                 || nombreProducto.isEmpty()
                 || cantidadProducto.isEmpty()
@@ -300,6 +330,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             double precioTotalProducto = precioTotalProducto();
             Object[] nuevaFila = {codigoProducto, nombreProducto, cantidadProducto, precioProducto, impuestoProducto, precioTotalProducto};
             modelo.addRow(nuevaFila);
+            guardarArchivoJSON();
             campoCodigoProducto.setText("");
             campoNombreProducto.setText("");
             campoCantidadProducto.setText("");
@@ -326,6 +357,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 modelo.setValueAt(precioProducto, filaSeleccionada, 3);
                 modelo.setValueAt(impuestoProducto, filaSeleccionada, 4);
                 modelo.setValueAt(precioTotalProducto(), filaSeleccionada, 5);
+                guardarArchivoJSON();
             }
         }
 
@@ -352,13 +384,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if(confirmacion == JOptionPane.YES_OPTION){
             if(filaSeleccionada != -1){
                 modelo.removeRow(filaSeleccionada);
-                JOptionPane.showConfirmDialog(this, "FACTURA ELIMINADA CORRECTAMENTE");
+                JOptionPane.showMessageDialog(this, "FACTURA ELIMINADA CORRECTAMENTE");
                 campoCodigoProducto.setText("");
                 campoNombreProducto.setText("");
                 campoCantidadProducto.setText("");
                 campoPrecioProducto.setText("");
                 campoImpuestoProducto.setText("");
                 campoPrecioTotal.setText("");
+                guardarArchivoJSON();
             }else{
                 JOptionPane.showConfirmDialog(this, "SELECCIONADA UNA FACTURA  PARA ELIMINAR");
             }
