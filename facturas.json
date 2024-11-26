@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "codigoProducto": 121,
+    "nombreProducto": "Leceh",
+    "cantidadProducto": 2,
+    "precioProducto": 12000.0,
+    "impuestoProducto": 3000.0,
+    "precioTotalProducto": 30000.0
+  },
+  {
+    "codigoProducto": 299,
+    "nombreProducto": "Mantequilla",
+    "cantidadProducto": 4,
+    "precioProducto": 3500.0,
+    "impuestoProducto": 2000.0,
+    "precioTotalProducto": 22000.0
+  }
+]

@@ -4,14 +4,18 @@
  */
 package TercerTallerTercerCorte;
 
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import com.google.gson.reflect.TypeToken; //
 
 /**
  *
@@ -66,36 +70,73 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         double precioProducto = Double.parseDouble(getCampoPrecioProducto());
         double impuestoProducto = Double.parseDouble(getCampoImpuestoProducto());
         int cantidadProducto = Integer.parseInt(getCampoCantidadProducto());
-        double precioTotalProducto = cantidadProducto * (precioProducto +impuestoProducto);
+        double precioTotalProducto = cantidadProducto * (precioProducto + impuestoProducto);
         return precioTotalProducto;
     }
-    
-    public void guardarArchivoJSON(){
+
+    public void guardarArchivoJSON() {
         //Lista para almacener los objetos factura
         List<Factura> listaFacturas = new ArrayList<>();
-        
+
         //Iterar sobre cada fila de la tabla para obtener los valores
-        for(int i = 0 ; i<modelo.getRowCount();i++){
+        for (int i = 0; i < modelo.getRowCount(); i++) {
             int codigoProducto = Integer.parseInt(modelo.getValueAt(i, 0).toString());
-            String nombreProducto = modelo.getValueAt(i,1).toString();
+            String nombreProducto = modelo.getValueAt(i, 1).toString();
             int cantidadProducto = Integer.parseInt(modelo.getValueAt(i, 2).toString());
             double precioProducto = Double.parseDouble(modelo.getValueAt(i, 3).toString());
             double impuestoProducto = Double.parseDouble(modelo.getValueAt(i, 4).toString());
             double precioTotalProducto = Double.parseDouble(modelo.getValueAt(i, 5).toString());
-             
+
             //Creamos un objeto factura, con los datos que obtenemos de cada fila de la tabla.
-            Factura factura = new Factura(codigoProducto,nombreProducto,cantidadProducto,precioProducto,impuestoProducto,precioTotalProducto);
+            Factura factura = new Factura(codigoProducto, nombreProducto, cantidadProducto, precioProducto, impuestoProducto, precioTotalProducto);
             listaFacturas.add(factura);
-        } 
+        }
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        try(FileWriter file = new FileWriter("facturas.json")){
-            gson.toJson(listaFacturas,file);
+        try (FileWriter file = new FileWriter("facturas.json")) {
+            gson.toJson(listaFacturas, file);
             JOptionPane.showMessageDialog(this, "Datos guardados correctamente en el archivo JSON");
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(this, "ERROR AL GUARDAR LOS DATOS EN EL ARCHIVO JSON ");
         }
     }
+
+    public void cargarDatosJSON() {
+    try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\luisc\\OneDrive\\Documentos\\NetBeansProjects\\TalleresPOO\\facturas.json"))) {
+        // Crear una instancia de Gson
+        Gson gson = new Gson();
+
+        // Definir el tipo usando TypeToken
+        java.lang.reflect.Type tipoFactura = new TypeToken<List<Factura>>() {}.getType();
+
+        // Deserializar el archivo JSON a una lista de objetos Factura
+        List<Factura> facturas = gson.fromJson(reader, tipoFactura);
+
+        // Limpiar el modelo de la tabla
+        modelo.setRowCount(0);
+
+        // Agregar las filas de la lista de facturas a la tabla
+        for (Factura factura : facturas) {
+            Object[] fila = {
+                factura.getCodigoProducto(),
+                factura.getNombreProducto(),
+                factura.getCantidadProducto(),
+                factura.getPrecioProducto(),
+                factura.getImpuestoProducto(),
+                factura.getPrecioTotalProducto()
+            };
+            modelo.addRow(fila);
+        }
+
+        JOptionPane.showMessageDialog(this, "Datos cargados correctamente desde el archivo JSON.");
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al cargar el archivo JSON: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        e.printStackTrace();
+    }
+}
+    
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -198,6 +239,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         botonCargar.setText("CARGAR");
+        botonCargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCargarActionPerformed(evt);
+            }
+        });
 
         etiquetaTitulo7.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         etiquetaTitulo7.setText("PRECIO TOTAL DEL PRODUCTO:");
@@ -360,8 +406,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 guardarArchivoJSON();
             }
         }
-
-
     }//GEN-LAST:event_botonEditarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -381,8 +425,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         int confirmacion = JOptionPane.showConfirmDialog(this, "¿ESTAS SEGURO DE ELIMINAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
         int filaSeleccionada = jTable1.getSelectedRow();
-        if(confirmacion == JOptionPane.YES_OPTION){
-            if(filaSeleccionada != -1){
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            if (filaSeleccionada != -1) {
                 modelo.removeRow(filaSeleccionada);
                 JOptionPane.showMessageDialog(this, "FACTURA ELIMINADA CORRECTAMENTE");
                 campoCodigoProducto.setText("");
@@ -392,13 +436,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 campoImpuestoProducto.setText("");
                 campoPrecioTotal.setText("");
                 guardarArchivoJSON();
-            }else{
+            } else {
                 JOptionPane.showConfirmDialog(this, "SELECCIONADA UNA FACTURA  PARA ELIMINAR");
             }
-        }else{
+        } else {
             JOptionPane.showConfirmDialog(this, "NO HAZ ELIMINADO NINGUNA FACTURA ");
         }
     }//GEN-LAST:event_botonEliminarActionPerformed
+
+    private void botonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarActionPerformed
+        cargarDatosJSON();
+    }//GEN-LAST:event_botonCargarActionPerformed
 
     /**
      * @param args the command line arguments
