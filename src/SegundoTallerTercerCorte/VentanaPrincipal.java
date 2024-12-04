@@ -38,7 +38,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     //Metodo para crear y guardar datos en archivo xml
     public void guardarXML(String nombreArchivo) {
         try {
-            DefaultTableModel modelo = getModeloTabla();
+            modelo = getModeloTabla();
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document documento = (Document) builder.newDocument();

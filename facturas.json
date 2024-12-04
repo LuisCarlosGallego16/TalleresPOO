@@ -1,18 +1,18 @@
 [
   {
-    "codigoProducto": 121,
-    "nombreProducto": "Leceh",
+    "codigoProducto": 12345,
+    "nombreProducto": "Leche",
     "cantidadProducto": 2,
-    "precioProducto": 12000.0,
-    "impuestoProducto": 3000.0,
-    "precioTotalProducto": 30000.0
+    "precioProducto": 3500.0,
+    "impuestoProducto": 900.0,
+    "precioTotalProducto": 8800.0
   },
   {
-    "codigoProducto": 299,
+    "codigoProducto": 6789,
     "nombreProducto": "Mantequilla",
-    "cantidadProducto": 4,
-    "precioProducto": 3500.0,
-    "impuestoProducto": 2000.0,
-    "precioTotalProducto": 22000.0
+    "cantidadProducto": 3,
+    "precioProducto": 9000.0,
+    "impuestoProducto": 1500.0,
+    "precioTotalProducto": 31500.0
   }
 ]

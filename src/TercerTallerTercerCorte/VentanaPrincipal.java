@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package TercerTallerTercerCorte;
 
 
@@ -15,8 +11,8 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import com.google.gson.reflect.TypeToken; //
-
+import com.google.gson.reflect.TypeToken; 
+ 
 /**
  *
  * @author luisc
@@ -64,6 +60,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public String getCampoPrecioTotal() {
         return campoPrecioTotal.getText();
     }
+    
+    
 
     //Metodo para calcular el precio de un producto
     public double precioTotalProducto() {
@@ -109,7 +107,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // Definir el tipo usando TypeToken
         java.lang.reflect.Type tipoFactura = new TypeToken<List<Factura>>() {}.getType();
 
-        // Deserializar el archivo JSON a una lista de objetos Factura
         List<Factura> facturas = gson.fromJson(reader, tipoFactura);
 
         // Limpiar el modelo de la tabla
@@ -421,7 +418,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             campoPrecioTotal.setText(modelo.getValueAt(filaSeleccionada, 5).toString());
         }
     }//GEN-LAST:event_jTable1MouseClicked
-
+     
+    
+    
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         int confirmacion = JOptionPane.showConfirmDialog(this, "¿ESTAS SEGURO DE ELIMINAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
         int filaSeleccionada = jTable1.getSelectedRow();
